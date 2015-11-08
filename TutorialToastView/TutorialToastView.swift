@@ -8,13 +8,13 @@
 
 import UIKit
 
-class TutorialToastView: UIView {
+public class TutorialToastView: UIView {
     
     static let closeButtonSize : CGFloat = 20
     static let standardPadding : CGFloat = 10
     var completion: (()->Void)?
     
-    static func presentTutorialToastView(toastView : TutorialToastView, superView: UIView) {
+    public static func presentTutorialToastView(toastView : TutorialToastView, superView: UIView) {
         toastView.frame.origin.y = toastView.frame.origin.y + toastView.frame.height
         toastView.alpha = 0
         superView.addSubview(toastView)
@@ -31,11 +31,11 @@ class TutorialToastView: UIView {
         super.init(frame: frame)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    convenience init(viewFrame: CGRect, title: String, subtitle: String, backgroundColor: UIColor, completion: (()->Void)) {
+    public convenience init(viewFrame: CGRect, title: String, subtitle: String, backgroundColor: UIColor, completion: (()->Void)) {
         let toastFrame = CGRectMake(viewFrame.origin.x, viewFrame.height - viewFrame.height/3, viewFrame.width, viewFrame.height/3)
         self.init(frame: toastFrame)
         let titleLabel = UILabel(frame: CGRectMake(
