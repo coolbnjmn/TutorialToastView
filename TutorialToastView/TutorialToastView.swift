@@ -52,6 +52,10 @@ public class TutorialToastViewStyle {
     public class func customStyle(backgroundColor : UIColor, tintColor : UIColor, font: UIFont) -> TutorialToastViewStyle? {
         return TutorialToastViewStyle(backgroundColor: backgroundColor, tintColor: tintColor, font: font)
     }
+    
+    public class func customStyleWithPadding(backgroundColor : UIColor, tintColor : UIColor, font: UIFont, padding: CGFloat, closeButtonSize: CGFloat) -> TutorialToastViewStyle? {
+        return TutorialToastViewStyle(backgroundColor: backgroundColor, tintColor: tintColor, font: font, padding: padding, closeButtonSize: closeButtonSize)
+    }
 }
 
 public class TutorialToastView: UIView {
@@ -107,6 +111,7 @@ public class TutorialToastView: UIView {
         subtitleLabel.textColor = style.tintColor
         subtitleLabel.textAlignment = .Center
         subtitleLabel.numberOfLines = 0
+        subtitleLabel.font = style.font
         
         let titleLabel = UILabel(frame: CGRectMake(
             toastFrame.origin.x + style.padding,
@@ -115,6 +120,7 @@ public class TutorialToastView: UIView {
             style.closeButtonSize))
         titleLabel.text = title
         titleLabel.textColor = style.tintColor
+        titleLabel.font = style.font
         
         self.backgroundColor = style.backgroundColor
         
@@ -132,39 +138,6 @@ public class TutorialToastView: UIView {
         self.addSubview(subtitleLabel)
         self.completion = completion
     }
-//    public convenience init(viewFrame: CGRect, title: String, subtitle: String, backgroundColor: UIColor, completion: (()->Void)) {
-//        let toastFrame = CGRectMake(viewFrame.origin.x, viewFrame.height - viewFrame.height/3, viewFrame.width, viewFrame.height/3)
-//        self.init(frame: toastFrame)
-//        let titleLabel = UILabel(frame: CGRectMake(
-//            toastFrame.origin.x + TutorialToastView.standardPadding,
-//            TutorialToastView.closeButtonSize + 2 * TutorialToastView.standardPadding,
-//            toastFrame.width - 2 * TutorialToastView.standardPadding,
-//            toastFrame.height - TutorialToastView.closeButtonSize - 3 * TutorialToastView.standardPadding))
-//        titleLabel.text = subtitle
-//        titleLabel.textColor = UIColor.whiteColor()
-//        titleLabel.textAlignment = .Center
-//        titleLabel.numberOfLines = 0
-//        
-//        let mainTitleLabel = UILabel(frame: CGRectMake(
-//            toastFrame.origin.x + TutorialToastView.standardPadding,
-//            TutorialToastView.standardPadding,
-//            toastFrame.width - TutorialToastView.closeButtonSize - 2 * TutorialToastView.standardPadding,
-//            TutorialToastView.closeButtonSize
-//            ))
-//        mainTitleLabel.text = title
-//        mainTitleLabel.textColor = UIColor.whiteColor()
-//        
-//        self.backgroundColor = backgroundColor
-//        let closeButton = UIButton(frame: CGRectMake(toastFrame.width - TutorialToastView.closeButtonSize - TutorialToastView.standardPadding, TutorialToastView.standardPadding, TutorialToastView.closeButtonSize, TutorialToastView.closeButtonSize))
-//        closeButton.enabled = true
-//        closeButton.addTarget(self, action: "runCompletion:", forControlEvents: .TouchUpInside)
-//        closeButton.backgroundColor = UIColor.greenColor()
-//        self.addSubview(closeButton)
-//        self.addSubview(titleLabel)
-//        self.addSubview(mainTitleLabel)
-//        self.completion = completion
-//        
-//    }
     
     func runCompletion(sender: AnyObject) {
         self.completion?()
