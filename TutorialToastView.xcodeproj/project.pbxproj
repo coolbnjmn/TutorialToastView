@@ -10,6 +10,7 @@
 		B2787D911BEF0084001C207E /* TutorialToastView.h in Headers */ = {isa = PBXBuildFile; fileRef = B2787D901BEF0084001C207E /* TutorialToastView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2787D981BEF0084001C207E /* TutorialToastView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2787D8D1BEF0084001C207E /* TutorialToastView.framework */; };
 		B2787D9D1BEF0084001C207E /* TutorialToastViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2787D9C1BEF0084001C207E /* TutorialToastViewTests.swift */; };
+		B2B63B1A1BEF060200155758 /* TutorialToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B63B191BEF060200155758 /* TutorialToastView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		B2787D971BEF0084001C207E /* TutorialToastViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TutorialToastViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2787D9C1BEF0084001C207E /* TutorialToastViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialToastViewTests.swift; sourceTree = "<group>"; };
 		B2787D9E1BEF0084001C207E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2B63B191BEF060200155758 /* TutorialToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialToastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				B2787D901BEF0084001C207E /* TutorialToastView.h */,
 				B2787D921BEF0084001C207E /* Info.plist */,
+				B2B63B191BEF060200155758 /* TutorialToastView.swift */,
 			);
 			path = TutorialToastView;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2B63B1A1BEF060200155758 /* TutorialToastView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +312,7 @@
 		B2787DA21BEF0084001C207E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -318,12 +323,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = coolbnjmn.TutorialToastView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		B2787DA31BEF0084001C207E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -376,6 +383,7 @@
 				B2787DA31BEF0084001C207E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B2787DA41BEF0084001C207E /* Build configuration list for PBXNativeTarget "TutorialToastViewTests" */ = {
 			isa = XCConfigurationList;
@@ -384,6 +392,7 @@
 				B2787DA61BEF0084001C207E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

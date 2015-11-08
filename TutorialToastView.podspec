@@ -30,5 +30,5 @@ s.framework = "UIKit"
 s.source_files = "TutorialToastView/**/*.{swift}"
 
 # 9
-s.resources = "TutorialToastView/**/*.{png,jpeg,jpg,storyboard,xib}"
+# s.resources = "TutorialToastView/**/*.{png,jpeg,jpg,storyboard,xib}"
 end
