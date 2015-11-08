@@ -4,40 +4,25 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>TutorialToastView.xcscheme</key>
+		<key>TutorialToastViewDemo.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>TutorialToastViewDemo.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>B21F31AE1BEFC8D40055BEB1</key>
+		<key>B2B63B5D1BEFC5C800155758</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B21F31C11BEFC8D40055BEB1</key>
+		<key>B2B63B711BEFC5C800155758</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B21F31CC1BEFC8D50055BEB1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B2787D8C1BEF0084001C207E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B2787D961BEF0084001C207E</key>
+		<key>B2B63B7C1BEFC5C800155758</key>
 		<dict>
 			<key>primary</key>
 			<true/>
