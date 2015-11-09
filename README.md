@@ -1,6 +1,8 @@
 # TutorialToastView
 A simple flexible view that animates into view when presented, showing some status or alert to your users. 
 
+![alt tag](https://github.com/coolbnjmn/TutorialToastView/blob/master/Demo.gif)
+
 ## Setup
 ### Initial Setup Instructions
 1. Ensure you have the latest version of Xcode installed on your computer. You can find the latest release at https://developer.apple.com/xcode/downloads/
