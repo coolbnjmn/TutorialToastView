@@ -51,7 +51,7 @@ class ViewController: UIViewController {
             return UIColor.clearColor()
         }
     }
-      
+    
     private func fontForButton(pickerIndex: Int) -> UIFont? {
         switch pickerIndex {
         case 0:
