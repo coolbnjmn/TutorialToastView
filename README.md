@@ -63,7 +63,7 @@ Scale parameter, which controls how big the tutorial view is going to be, should
 - Animated dismissal
 - Ability to pass an animation block that is more custom
 - More customization
-
+- Instead of a colored square for the close button, use an actual image asset with a changeable tint color.
 
 ## License
 Copyright (c) 2015 Benjamin Hendricks
