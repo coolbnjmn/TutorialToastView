@@ -140,7 +140,14 @@ public class TutorialToastView: UIView {
     }
     
     func runCompletion(sender: AnyObject) {
-        self.completion?()
+        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            self.frame.origin.y = self.frame.origin.y + self.frame.height
+            self.alpha = 0
+            }, completion: {
+                finished in
+                self.removeFromSuperview()
+                self.completion?()
+        })
     }
 }
 

@@ -23,9 +23,7 @@ At the top of the file where you'd like to use `TutorialToastView`, insert `impo
 Create a toast view simply and easily by doing the following: 
 
 ```
-self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "TITLE", subtitle: "subtitle", defaultStyle: .Light, completion: {
-   self.toastView?.removeFromSuperview()
-})
+self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "TITLE", subtitle: "subtitle", defaultStyle: .Light, completion: {})
 ```
 This will create a toast view and set it to the toastView property of your ViewController. As of right now, these views do not auto-dismiss, although this is a feature I am currently investigating. Therefore, you must pass a reference to dismiss the view in the completion block. This will be fixed soon. 
 
@@ -33,17 +31,13 @@ The style parameter can also change, and can be either Light or Dark, the two bu
 
 ```
 let style = TutorialToastViewStyle(backgroundColor: BACKGROUNDCOLORHERE, tintColor: TINTCOLORHERE, font: FONTHERE)
-self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "TITLE", subtitle: "subtitle", style: style, completion: {
-  self.toastView?.removeFromSuperview()
-})
+self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "TITLE", subtitle: "subtitle", style: style, completion: {})
 ```
 In addition to this customized styling method, you can even go in and modify the size of the paddings and button size, by doing the following:
 
 ```
 let style = TutorialToastViewStyle(backgroundColor: BACKGROUNDCOLORHERE, tintColor: TINTCOLORHERE, font: FONTHERE, padding: PADDINGHERE, closeButtonSize: CLOSEBUTTONSIZEHERE)
-self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "TITLE", subtitle: "subtitle", style: style, completion: {
-  self.toastView?.removeFromSuperview()
-})
+self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "TITLE", subtitle: "subtitle", style: style, completion: {})
 ```
 
 ### Presentation
@@ -55,12 +49,10 @@ To then present your toast view, you can either manually animate the subview in,
 ```
 
 ## Warnings
-Make sure you're completion block handles dismissal and removal of the subview from it's superview. This is key as of today's release, and will change soon. 
 Scale parameter, which controls how big the tutorial view is going to be, should be between 0 and 1. Any scale larger than 1 will not be able to get dismissed, and this is a known bug that will be fixed. 
 
 ## In the Pipeline
 - Fixes to the above warnings
-- Animated dismissal
 - Ability to pass an animation block that is more custom
 - More customization
 - Instead of a colored square for the close button, use an actual image asset with a changeable tint color.

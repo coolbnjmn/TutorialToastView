@@ -70,7 +70,6 @@ class ViewController: UIViewController {
         if !isPresenting {
             let style = TutorialToastViewStyle(backgroundColor: colorForButton(backgroundColorPicker.selectedSegmentIndex), tintColor: colorForButton(tintColorPicker.selectedSegmentIndex), font: fontForButton(fontPicker.selectedSegmentIndex)!, padding: CGFloat(paddingSlider.value), closeButtonSize: CGFloat(closeButtonSizeSlider.value))
             self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "THIS IS YOUR ALERT TITLE", subtitle: "This is where you can give your users some more details about what is going on", style: style, completion: {
-                self.toastView?.removeFromSuperview()
                 self.isPresenting = false
             })
             
