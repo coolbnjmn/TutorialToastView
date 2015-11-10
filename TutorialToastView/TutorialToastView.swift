@@ -97,10 +97,40 @@ public class TutorialToastViewStyle {
     }
 }
 
+public class TutorialToastViewAnimationStyle {
+    var inAnimationDuration : Double = 0.5
+    var inAnimationCurve : UIViewAnimationOptions = .CurveEaseIn
+    var outAnimationDuration : Double = 0.5
+    var outAnimationCurve : UIViewAnimationOptions = .CurveEaseOut
+    
+    public convenience init(inDuration : Double?, inCurve : UIViewAnimationOptions?, outDuration: Double?, outCurve : UIViewAnimationOptions?) {
+        self.init()
+        if let inDuration = inDuration {
+            inAnimationDuration = inDuration
+        }
+        if let inCurve = inCurve {
+            inAnimationCurve = inCurve
+        }
+        if let outDuration = outDuration {
+            outAnimationDuration = outDuration
+        }
+        if let outCurve = outCurve {
+            outAnimationCurve = outCurve
+        }
+    }
+    public class func defaultAnimationStyle() -> TutorialToastViewAnimationStyle {
+        return TutorialToastViewAnimationStyle()
+    }
+    
+    public class func customAnimationStyle(inDuration : Double?, inCurve : UIViewAnimationOptions?, outDuration: Double?, outCurve : UIViewAnimationOptions?) -> TutorialToastViewAnimationStyle {
+        return TutorialToastViewAnimationStyle(inDuration: inDuration, inCurve: inCurve, outDuration: outDuration, outCurve: outCurve)
+    }
+}
+
 public class TutorialToastView: UIView {
     
     var completion: (()->Void)?
-    
+    var animationStyle : TutorialToastViewAnimationStyle?
     /**
     * A static method used to present a toast view within a given super view. 
     * We animate the view in, using a 2 second animation
@@ -113,7 +143,13 @@ public class TutorialToastView: UIView {
         toastView.frame.origin.y = toastView.frame.origin.y + toastView.frame.height
         toastView.alpha = 0
         superView.addSubview(toastView)
-        UIView.animateWithDuration(2, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        var anStyle : TutorialToastViewAnimationStyle
+        if let animationStyle = toastView.animationStyle {
+            anStyle = animationStyle
+        } else {
+            anStyle = TutorialToastViewAnimationStyle.defaultAnimationStyle()
+        }
+        UIView.animateWithDuration(anStyle.inAnimationDuration, delay: 0, options: anStyle.inAnimationCurve, animations: {
             toastView.frame.origin.y = toastView.frame.origin.y - toastView.frame.height
             toastView.alpha = 1
             }, completion: {
@@ -140,9 +176,9 @@ public class TutorialToastView: UIView {
     * ::param:: completion         ()->Void A completion which can handle anything you need to happen when the toast view disappears.
     *
     */
-    public convenience init(superviewFrame: CGRect, scale: CGFloat, title: String, subtitle: String, defaultStyle: TutorialToastViewStyleStyle, completion: (()->Void)) {
+    public convenience init(superviewFrame: CGRect, scale: CGFloat, title: String, subtitle: String, defaultStyle: TutorialToastViewStyleStyle, animationStyle: TutorialToastViewAnimationStyle?, completion: (()->Void)) {
         if let style = TutorialToastViewStyle.defaultStyle(defaultStyle) {
-            self.init(superviewFrame: superviewFrame, scale: scale, title: title, subtitle: subtitle, style: style, completion: completion)
+            self.init(superviewFrame: superviewFrame, scale: scale, title: title, subtitle: subtitle, style: style, animationStyle: animationStyle, completion: completion)
         } else {
             let toastFrame = CGRectMake(superviewFrame.origin.x, superviewFrame.height - superviewFrame.height * scale, superviewFrame.width, superviewFrame.height * scale)
             self.init(frame: toastFrame)
@@ -162,7 +198,7 @@ public class TutorialToastView: UIView {
      * ::param:: completion         ()->Void A completion which can handle anything you need to happen when the toast view disappears.
      *
      */
-    public convenience init(superviewFrame: CGRect, scale: CGFloat, title: String, subtitle: String, style: TutorialToastViewStyle, completion: (()->Void)) {
+    public convenience init(superviewFrame: CGRect, scale: CGFloat, title: String, subtitle: String, style: TutorialToastViewStyle, animationStyle: TutorialToastViewAnimationStyle?, completion: (()->Void)) {
         let toastFrame = CGRectMake(superviewFrame.origin.x, superviewFrame.height - superviewFrame.height * scale, superviewFrame.width, superviewFrame.height * scale)
         self.init(frame: toastFrame)
         
@@ -201,10 +237,20 @@ public class TutorialToastView: UIView {
         self.addSubview(titleLabel)
         self.addSubview(subtitleLabel)
         self.completion = completion
+        
+        if let animationStyle = animationStyle {
+            self.animationStyle = animationStyle
+        }
     }
     
     func runCompletion(sender: AnyObject) {
-        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+        var anStyle : TutorialToastViewAnimationStyle
+        if let animationStyle = animationStyle {
+            anStyle = animationStyle
+        } else {
+            anStyle = TutorialToastViewAnimationStyle.defaultAnimationStyle()
+        }
+        UIView.animateWithDuration(anStyle.outAnimationDuration, delay: 0, options: anStyle.outAnimationCurve, animations: {
             self.frame.origin.y = self.frame.origin.y + self.frame.height
             self.alpha = 0
             }, completion: {

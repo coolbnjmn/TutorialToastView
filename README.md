@@ -23,7 +23,7 @@ At the top of the file where you'd like to use `TutorialToastView`, insert `impo
 Create a toast view simply and easily by doing the following: 
 
 ```
-self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "TITLE", subtitle: "subtitle", defaultStyle: .Light, completion: {})
+self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "TITLE", subtitle: "subtitle", defaultStyle: .Light, animationStyle: nil, completion: {})
 ```
 This will create a toast view and set it to the toastView property of your ViewController. As of right now, these views do not auto-dismiss, although this is a feature I am currently investigating. Therefore, you must pass a reference to dismiss the view in the completion block. This will be fixed soon. 
 
@@ -31,13 +31,13 @@ The style parameter can also change, and can be either Light or Dark, the two bu
 
 ```
 let style = TutorialToastViewStyle(backgroundColor: BACKGROUNDCOLORHERE, tintColor: TINTCOLORHERE, font: FONTHERE)
-self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "TITLE", subtitle: "subtitle", style: style, completion: {})
+self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "TITLE", subtitle: "subtitle", style: style, animationStyle: nil, completion: {})
 ```
 In addition to this customized styling method, you can even go in and modify the size of the paddings and button size, by doing the following:
 
 ```
 let style = TutorialToastViewStyle(backgroundColor: BACKGROUNDCOLORHERE, tintColor: TINTCOLORHERE, font: FONTHERE, padding: PADDINGHERE, closeButtonSize: CLOSEBUTTONSIZEHERE)
-self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "TITLE", subtitle: "subtitle", style: style, completion: {})
+self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "TITLE", subtitle: "subtitle", style: style, animationStyle: nil, completion: {})
 ```
 
 ### Presentation
@@ -53,9 +53,21 @@ Scale parameter, which controls how big the tutorial view is going to be, should
 
 ## In the Pipeline
 - Fixes to the above warnings
-- Ability to pass an animation block that is more custom
 - More customization
 - Instead of a colored square for the close button, use an actual image asset with a changeable tint color.
+
+## ChangeLog
+### V0.1.10
+Added TutorialToastViewAnimationStyle parameter to all TutorialToastView creation calls, but you can pass nil for now. If you want to pass a custom animation style, though, you can! through these simple methods:
+```
+TutorialToastViewAnimationStyle.defaultAnimationStyle()
+```
+OR
+```
+TutorialToastViewAnimationStyle.customAnimationStyle(inDuration : 1, inCurve : .CurveEaseOut, outDuration: 1, outCurve : .CurveEaseIn) 
+```
+
+If this is not enough customization, let me know!
 
 ## License
 Copyright (c) 2015 Benjamin Hendricks

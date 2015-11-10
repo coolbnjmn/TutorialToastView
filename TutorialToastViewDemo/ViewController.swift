@@ -69,7 +69,7 @@ class ViewController: UIViewController {
     @IBAction func customButtonPressed(sender: AnyObject) {
         if !isPresenting {
             let style = TutorialToastViewStyle(backgroundColor: colorForButton(backgroundColorPicker.selectedSegmentIndex), tintColor: colorForButton(tintColorPicker.selectedSegmentIndex), font: fontForButton(fontPicker.selectedSegmentIndex)!, padding: CGFloat(paddingSlider.value), closeButtonSize: CGFloat(closeButtonSizeSlider.value))
-            self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "THIS IS YOUR ALERT TITLE", subtitle: "This is where you can give your users some more details about what is going on", style: style, completion: {
+            self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "THIS IS YOUR ALERT TITLE", subtitle: "This is where you can give your users some more details about what is going on", style: style, animationStyle: nil, completion: {
                 self.isPresenting = false
             })
             
@@ -82,7 +82,7 @@ class ViewController: UIViewController {
     
     @IBAction func darkButtonPressed(sender: AnyObject) {
         if !isPresenting {
-            self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "THIS IS YOUR ALERT TITLE", subtitle: "This is where you can give your users some more details about what is going on", defaultStyle: .Dark, completion: {
+            self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "THIS IS YOUR ALERT TITLE", subtitle: "This is where you can give your users some more details about what is going on", defaultStyle: .Dark, animationStyle: nil, completion: {
                 self.toastView?.removeFromSuperview()
                 self.isPresenting = false
             })
@@ -95,7 +95,7 @@ class ViewController: UIViewController {
     }
     @IBAction func lightButtonPressed(sender: AnyObject) {
         if !isPresenting {
-            self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "THIS IS YOUR ALERT TITLE", subtitle: "This is where you can give your users some more details about what is going on", defaultStyle: .Light, completion: {
+            self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "THIS IS YOUR ALERT TITLE", subtitle: "This is where you can give your users some more details about what is going on", defaultStyle: .Light, animationStyle: nil, completion: {
                 self.toastView?.removeFromSuperview()
                 self.isPresenting = false
             })
