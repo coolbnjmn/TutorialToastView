@@ -48,11 +48,7 @@ To then present your toast view, you can either manually animate the subview in,
 
 ```
 
-## Warnings
-Scale parameter, which controls how big the tutorial view is going to be, should be between 0 and 1. Any scale larger than 1 will not be able to get dismissed, and this is a known bug that will be fixed. 
-
 ## In the Pipeline
-- Fixes to the above warnings
 - More customization
 - Instead of a colored square for the close button, use an actual image asset with a changeable tint color.
 
@@ -66,6 +62,9 @@ OR
 ```
 TutorialToastViewAnimationStyle.customAnimationStyle(inDuration : 1, inCurve : .CurveEaseOut, outDuration: 1, outCurve : .CurveEaseIn) 
 ```
+### V0.1.11
+Made entire tutorial toast view dismissable on tap. 
+Improved error detection of scale parameter. If it is not in range, a default 1/3 will be used. 
 
 If this is not enough customization, let me know!
 

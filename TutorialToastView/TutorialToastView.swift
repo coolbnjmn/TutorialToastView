@@ -199,7 +199,12 @@ public class TutorialToastView: UIView {
      *
      */
     public convenience init(superviewFrame: CGRect, scale: CGFloat, title: String, subtitle: String, style: TutorialToastViewStyle, animationStyle: TutorialToastViewAnimationStyle?, completion: (()->Void)) {
-        let toastFrame = CGRectMake(superviewFrame.origin.x, superviewFrame.height - superviewFrame.height * scale, superviewFrame.width, superviewFrame.height * scale)
+        var theScale = scale
+        if theScale > 1 || theScale < 0 {
+            theScale = (1/3)
+        }
+        
+        let toastFrame = CGRectMake(superviewFrame.origin.x, superviewFrame.height - superviewFrame.height * theScale, superviewFrame.width, superviewFrame.height * theScale)
         self.init(frame: toastFrame)
         
         let subtitleLabel = UILabel(frame: CGRectMake(
@@ -241,6 +246,9 @@ public class TutorialToastView: UIView {
         if let animationStyle = animationStyle {
             self.animationStyle = animationStyle
         }
+        
+        let tapGestureRecognizer : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "runCompletion:")
+        self.addGestureRecognizer(tapGestureRecognizer)
     }
     
     func runCompletion(sender: AnyObject) {
