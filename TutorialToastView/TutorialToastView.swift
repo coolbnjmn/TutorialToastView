@@ -102,6 +102,7 @@ public class TutorialToastViewAnimationStyle {
     var inAnimationCurve : UIViewAnimationOptions = .CurveEaseIn
     var outAnimationDuration : Double = 0.5
     var outAnimationCurve : UIViewAnimationOptions = .CurveEaseOut
+    var isDynamic : Bool = false
     
     public convenience init(inDuration : Double?, inCurve : UIViewAnimationOptions?, outDuration: Double?, outCurve : UIViewAnimationOptions?) {
         self.init()
@@ -118,6 +119,12 @@ public class TutorialToastViewAnimationStyle {
             outAnimationCurve = outCurve
         }
     }
+    
+    public convenience init(isDynamic: Bool) {
+        self.init()
+        self.isDynamic = isDynamic
+    }
+    
     public class func defaultAnimationStyle() -> TutorialToastViewAnimationStyle {
         return TutorialToastViewAnimationStyle()
     }
@@ -125,12 +132,21 @@ public class TutorialToastViewAnimationStyle {
     public class func customAnimationStyle(inDuration : Double?, inCurve : UIViewAnimationOptions?, outDuration: Double?, outCurve : UIViewAnimationOptions?) -> TutorialToastViewAnimationStyle {
         return TutorialToastViewAnimationStyle(inDuration: inDuration, inCurve: inCurve, outDuration: outDuration, outCurve: outCurve)
     }
+    
+    public class func dynamicAnimationStyle() -> TutorialToastViewAnimationStyle {
+        return TutorialToastViewAnimationStyle(isDynamic: true)
+    }
 }
 
 public class TutorialToastView: UIView {
     
     var completion: (()->Void)?
     var animationStyle : TutorialToastViewAnimationStyle?
+    var animator : UIDynamicAnimator?
+    
+    static let kTransitionGestureVelocityThreshold : CGFloat = 50
+    static let kTransitionGestureLocationThreshold : CGFloat = 100
+    var initialCenter : CGPoint?
     /**
     * A static method used to present a toast view within a given super view. 
     * We animate the view in, using a 2 second animation
@@ -140,8 +156,6 @@ public class TutorialToastView: UIView {
     *
     */
     public static func presentTutorialToastView(toastView : TutorialToastView, superView: UIView) {
-        toastView.frame.origin.y = toastView.frame.origin.y + toastView.frame.height
-        toastView.alpha = 0
         superView.addSubview(toastView)
         var anStyle : TutorialToastViewAnimationStyle
         if let animationStyle = toastView.animationStyle {
@@ -149,14 +163,35 @@ public class TutorialToastView: UIView {
         } else {
             anStyle = TutorialToastViewAnimationStyle.defaultAnimationStyle()
         }
-        UIView.animateWithDuration(anStyle.inAnimationDuration, delay: 0, options: anStyle.inAnimationCurve, animations: {
-            toastView.frame.origin.y = toastView.frame.origin.y - toastView.frame.height
-            toastView.alpha = 1
-            }, completion: {
-                finished in
-        })
+        
+        toastView.initialCenter = toastView.center
+        toastView.frame.origin.y = toastView.frame.origin.y + toastView.frame.height
+
+        if !anStyle.isDynamic {
+            toastView.alpha = 0
+            UIView.animateWithDuration(anStyle.inAnimationDuration, delay: 0, options: anStyle.inAnimationCurve, animations: {
+                toastView.frame.origin.y = toastView.frame.origin.y - toastView.frame.height
+                toastView.alpha = 1
+                }, completion: {
+                    finished in
+            })
+        } else {
+            let snapBehavior : UISnapBehavior = UISnapBehavior(item: toastView, snapToPoint: CGPointMake(toastView.center.x, toastView.center.y - toastView.frame.height))
+            snapBehavior.damping = 0.65
+            
+            let bounceBehavior : UIDynamicItemBehavior = UIDynamicItemBehavior(items: [])
+            bounceBehavior.elasticity = 0.6
+            
+            
+            toastView.animator = UIDynamicAnimator(referenceView: superView)
+            toastView.animator?.addBehavior(snapBehavior)
+            toastView.animator?.addBehavior(bounceBehavior)
+            
+            
+        }
+
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -249,23 +284,85 @@ public class TutorialToastView: UIView {
         
         let tapGestureRecognizer : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "runCompletion:")
         self.addGestureRecognizer(tapGestureRecognizer)
+        
+        let panGestureRecognizer : UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "animateView:")
+        self.addGestureRecognizer(panGestureRecognizer)
     }
     
-    func runCompletion(sender: AnyObject) {
+    private func animateView(sender : UIGestureRecognizer) {
+        if let sender = sender as? UIPanGestureRecognizer {
+            if sender.state == UIGestureRecognizerState.Began {
+                layer.removeAllAnimations()
+                animator?.removeAllBehaviors()
+            } else if sender.state == UIGestureRecognizerState.Changed {
+                let translation : CGPoint = sender.translationInView(sender.view)
+                
+                if var initialCenter = self.initialCenter {
+                    initialCenter.x += translation.x
+                    initialCenter.y += translation.y
+                    
+                    self.center = initialCenter
+                }
+            } else if sender.state == UIGestureRecognizerState.Ended {
+                let location : CGPoint = sender.locationInView(sender.view)
+                let velocity : CGPoint = sender.velocityInView(sender.view)
+                
+                var shouldFinish : Bool = false
+                
+                if(abs(velocity.y) > TutorialToastView.kTransitionGestureVelocityThreshold) {
+                    shouldFinish = velocity.y > 0
+                } else {
+                    shouldFinish = location.y > TutorialToastView.kTransitionGestureLocationThreshold
+                }
+                
+                if shouldFinish {
+                    runCompletion(sender)
+                } else {
+                    if let initialCenter = initialCenter {
+                        let snapBehavior : UISnapBehavior = UISnapBehavior(item: self, snapToPoint: initialCenter)
+                        snapBehavior.damping = 0.65
+                        animator?.removeAllBehaviors()
+                        animator?.addBehavior(snapBehavior)
+                    }
+                }
+            }
+        }
+    }
+    
+    private func runCompletion(sender: AnyObject) {
         var anStyle : TutorialToastViewAnimationStyle
         if let animationStyle = animationStyle {
             anStyle = animationStyle
         } else {
             anStyle = TutorialToastViewAnimationStyle.defaultAnimationStyle()
         }
-        UIView.animateWithDuration(anStyle.outAnimationDuration, delay: 0, options: anStyle.outAnimationCurve, animations: {
-            self.frame.origin.y = self.frame.origin.y + self.frame.height
-            self.alpha = 0
-            }, completion: {
-                finished in
-                self.removeFromSuperview()
-                self.completion?()
-        })
+        
+        if !anStyle.isDynamic {
+            UIView.animateWithDuration(anStyle.outAnimationDuration, delay: 0, options: anStyle.outAnimationCurve, animations: {
+                self.frame.origin.y = self.frame.origin.y + self.frame.height
+                self.alpha = 0
+                }, completion: {
+                    finished in
+                    self.removeFromSuperview()
+                    self.completion?()
+            })
+        } else {
+            let snapBehavior : UISnapBehavior = UISnapBehavior(item: self, snapToPoint: CGPointMake(self.center.x, self.center.y + self.frame.height))
+            snapBehavior.damping = 0.65
+            
+            if let _ = self.animator {
+                self.animator?.removeAllBehaviors()
+                self.animator?.addBehavior(snapBehavior)
+            }
+            
+            UIView.animateWithDuration(0.1, animations: {
+                self.alpha = 0
+                }, completion: {
+                    finished in
+                    self.removeFromSuperview()
+                    self.completion?()
+            })
+        }
+       
     }
 }
-

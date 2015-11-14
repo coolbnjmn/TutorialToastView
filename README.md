@@ -66,6 +66,13 @@ TutorialToastViewAnimationStyle.customAnimationStyle(inDuration : 1, inCurve : .
 Made entire tutorial toast view dismissable on tap. 
 Improved error detection of scale parameter. If it is not in range, a default 1/3 will be used. 
 
+### V0.1.12
+UIDynamics are here! Use the isDynamic option on your animationStyle, and you'll get snapBehavior on the toast view, along with a pan gesture recognizer to dismiss. All you have to do differently is initialize a animationStyle with the dynamic type, and then use that when initializing the toastView!
+```
+let animationStyle = TutorialToastViewAnimationStyle.dynamicAnimationStyle()
+
+TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "", subtitle: "", style: style, animationStyle: animationStyle, completion: {})
+```
 If this is not enough customization, let me know!
 
 ## License

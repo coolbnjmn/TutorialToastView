@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var lightButton: UIButton!
     @IBOutlet weak var darkButton: UIButton!
     @IBOutlet weak var customButton: UIButton!
+    @IBOutlet weak var dynamicButton: UIButton!
     
     @IBOutlet weak var backgroundColorPicker: UISegmentedControl!
     
@@ -66,6 +67,24 @@ class ViewController: UIViewController {
             return UIFont.systemFontOfSize(15)
         }
     }
+    
+    @IBAction func dynamicButtonPressed(sender: AnyObject) {
+        if !isPresenting {
+            let style = TutorialToastViewStyle(backgroundColor: colorForButton(backgroundColorPicker.selectedSegmentIndex), tintColor: colorForButton(tintColorPicker.selectedSegmentIndex), font: fontForButton(fontPicker.selectedSegmentIndex)!, padding: CGFloat(paddingSlider.value), closeButtonSize: CGFloat(closeButtonSizeSlider.value))
+            
+            let animationStyle : TutorialToastViewAnimationStyle = TutorialToastViewAnimationStyle.dynamicAnimationStyle()
+            
+            self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "THIS IS YOUR ALERT TITLE", subtitle: "This is where you can give your users some more details about what is going on", style: style, animationStyle: animationStyle, completion: {
+                self.isPresenting = false
+            })
+            
+            if let toastView = self.toastView {
+                isPresenting = true
+                TutorialToastView.presentTutorialToastView(toastView, superView: view)
+            }
+        }
+    }
+    
     @IBAction func customButtonPressed(sender: AnyObject) {
         if !isPresenting {
             let style = TutorialToastViewStyle(backgroundColor: colorForButton(backgroundColorPicker.selectedSegmentIndex), tintColor: colorForButton(tintColorPicker.selectedSegmentIndex), font: fontForButton(fontPicker.selectedSegmentIndex)!, padding: CGFloat(paddingSlider.value), closeButtonSize: CGFloat(closeButtonSizeSlider.value))

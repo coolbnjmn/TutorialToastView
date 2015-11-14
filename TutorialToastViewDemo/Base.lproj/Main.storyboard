@@ -127,6 +127,19 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Px1-05-n6v">
+                                <rect key="frame" x="390" y="288" width="60" height="50"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="6J3-SV-Z2A"/>
+                                </constraints>
+                                <state key="normal" title="Dynamic">
+                                    <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="dynamicButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Brz-Qc-eaI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -143,6 +156,7 @@
                             <constraint firstItem="7h0-9v-xiq" firstAttribute="top" secondItem="FQs-wX-Kje" secondAttribute="bottom" constant="10" id="LgQ-UU-VNx"/>
                             <constraint firstItem="QPe-lV-oZg" firstAttribute="top" secondItem="MQs-WV-rum" secondAttribute="bottom" constant="10" id="LlS-i8-3Ac"/>
                             <constraint firstItem="cjI-hw-n1Q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Oam-z9-fuK"/>
+                            <constraint firstItem="Px1-05-n6v" firstAttribute="centerY" secondItem="q9B-JQ-PKs" secondAttribute="centerY" id="Pp2-L5-iTS"/>
                             <constraint firstItem="ivs-5v-U1f" firstAttribute="top" secondItem="QPe-lV-oZg" secondAttribute="bottom" constant="10" id="TCl-zB-PHb"/>
                             <constraint firstItem="GvZ-Qv-JPT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="UMU-Im-bLR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="xIU-sv-4pF" secondAttribute="trailing" constant="10" id="VYz-SB-xap"/>
@@ -152,6 +166,7 @@
                             <constraint firstAttribute="trailing" secondItem="QPe-lV-oZg" secondAttribute="trailing" constant="10" id="ZHZ-xV-y0Z"/>
                             <constraint firstItem="24U-VH-nPF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="aZr-e8-fC7"/>
                             <constraint firstItem="q9B-JQ-PKs" firstAttribute="leading" secondItem="24U-VH-nPF" secondAttribute="trailing" constant="10" id="bFf-Du-4LK"/>
+                            <constraint firstItem="Px1-05-n6v" firstAttribute="leading" secondItem="q9B-JQ-PKs" secondAttribute="trailing" constant="10" id="d82-bH-N54"/>
                             <constraint firstItem="FQs-wX-Kje" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="i36-ab-wgv"/>
                             <constraint firstItem="GvZ-Qv-JPT" firstAttribute="top" secondItem="ivs-5v-U1f" secondAttribute="bottom" constant="10" id="jSi-7h-Kfo"/>
                             <constraint firstItem="GvZ-Qv-JPT" firstAttribute="top" secondItem="ivs-5v-U1f" secondAttribute="bottom" constant="10" id="kuh-el-cfS"/>
@@ -179,6 +194,7 @@
                         <outlet property="closeButtonSizeSlider" destination="89m-NM-uJu" id="kwg-cg-uAO"/>
                         <outlet property="customButton" destination="q9B-JQ-PKs" id="jtH-3T-Drz"/>
                         <outlet property="darkButton" destination="24U-VH-nPF" id="L84-an-BJc"/>
+                        <outlet property="dynamicButton" destination="Px1-05-n6v" id="7wa-ro-ZBy"/>
                         <outlet property="fontPicker" destination="FQs-wX-Kje" id="bjW-nA-0fm"/>
                         <outlet property="lightButton" destination="nPu-BJ-uaa" id="e0I-I1-Q1m"/>
                         <outlet property="paddingSlider" destination="Xk0-BM-xb4" id="cP3-Ay-IX2"/>
