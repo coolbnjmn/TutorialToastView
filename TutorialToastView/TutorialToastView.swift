@@ -289,7 +289,7 @@ public class TutorialToastView: UIView {
         self.addGestureRecognizer(panGestureRecognizer)
     }
     
-    private func animateView(sender : UIGestureRecognizer) {
+    func animateView(sender : UIGestureRecognizer) {
         if let sender = sender as? UIPanGestureRecognizer {
             if sender.state == UIGestureRecognizerState.Began {
                 layer.removeAllAnimations()
@@ -329,7 +329,7 @@ public class TutorialToastView: UIView {
         }
     }
     
-    private func runCompletion(sender: AnyObject) {
+    func runCompletion(sender: AnyObject) {
         var anStyle : TutorialToastViewAnimationStyle
         if let animationStyle = animationStyle {
             anStyle = animationStyle
