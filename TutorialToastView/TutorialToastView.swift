@@ -280,13 +280,14 @@ public class TutorialToastView: UIView {
         
         if let animationStyle = animationStyle {
             self.animationStyle = animationStyle
+            if animationStyle.isDynamic {
+                let panGestureRecognizer : UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "animateView:")
+                self.addGestureRecognizer(panGestureRecognizer)
+   
+            }
         }
-        
         let tapGestureRecognizer : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "runCompletion:")
         self.addGestureRecognizer(tapGestureRecognizer)
-        
-        let panGestureRecognizer : UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "animateView:")
-        self.addGestureRecognizer(panGestureRecognizer)
     }
     
     func animateView(sender : UIGestureRecognizer) {

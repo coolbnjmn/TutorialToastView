@@ -73,6 +73,10 @@ let animationStyle = TutorialToastViewAnimationStyle.dynamicAnimationStyle()
 
 TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "", subtitle: "", style: style, animationStyle: animationStyle, completion: {})
 ```
+
+### V0.1.14
+Fixed some bugs
+
 If this is not enough customization, let me know!
 
 ## License
