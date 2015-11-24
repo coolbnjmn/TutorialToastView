@@ -80,6 +80,9 @@ Fixed some bugs
 ### V0.1.15
 Added close buttin icon, and tint it the right color. 
 
+### V0.1.16
+Resource set in podspec correctly, should find close button
+
 If this is not enough customization, let me know!
 
 ## License

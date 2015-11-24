@@ -8,7 +8,7 @@ s.summary = "TutorialToastView is a flexible view that allows for tutorial toast
 s.requires_arc = true
 
 # 2
-s.version = "0.1.15"
+s.version = "0.1.16"
 
 # 3
 s.license = { :type => "MIT", :file => "LICENSE" }
@@ -30,5 +30,5 @@ s.framework = "UIKit"
 s.source_files = "TutorialToastView/**/*.{swift}"
 
 # 9
-# s.resources = "TutorialToastView/**/*.{png,jpeg,jpg,storyboard,xib}"
+s.resources = "TutorialToastView/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
 end
