@@ -182,7 +182,6 @@ public class TutorialToastView: UIView {
             let bounceBehavior : UIDynamicItemBehavior = UIDynamicItemBehavior(items: [])
             bounceBehavior.elasticity = 0.6
             
-            
             toastView.animator = UIDynamicAnimator(referenceView: superView)
             toastView.animator?.addBehavior(snapBehavior)
             toastView.animator?.addBehavior(bounceBehavior)
@@ -270,7 +269,10 @@ public class TutorialToastView: UIView {
             style.closeButtonSize,
             style.closeButtonSize))
         closeButton.enabled = true
-        closeButton.backgroundColor = style.tintColor
+        closeButton.tintColor = style.tintColor
+        closeButton.setImage(UIImage(named: "closeButton")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+        closeButton.setImage(UIImage(named: "closeButton")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Selected)
+        closeButton.setImage(UIImage(named: "closeButton")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Highlighted)
         closeButton.addTarget(self, action: "runCompletion:", forControlEvents: .TouchUpInside)
         
         self.addSubview(closeButton)

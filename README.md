@@ -77,6 +77,9 @@ TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "", subtitle:
 ### V0.1.14
 Fixed some bugs
 
+### V0.1.15
+Added close buttin icon, and tint it the right color. 
+
 If this is not enough customization, let me know!
 
 ## License
