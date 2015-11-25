@@ -270,9 +270,9 @@ public class TutorialToastView: UIView {
             style.closeButtonSize))
         closeButton.enabled = true
         closeButton.tintColor = style.tintColor
-        closeButton.setImage(UIImage(named: "closeButton")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
-        closeButton.setImage(UIImage(named: "closeButton")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Selected)
-        closeButton.setImage(UIImage(named: "closeButton")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Highlighted)
+        closeButton.setImage(UIImage(named: "closeButton", inBundle: NSBundle(forClass: self.classForCoder), compatibleWithTraitCollection: UITraitCollection())?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+        closeButton.setImage(UIImage(named: "closeButton", inBundle: NSBundle(forClass: self.classForCoder), compatibleWithTraitCollection: UITraitCollection())?.imageWithRenderingMode(.AlwaysTemplate), forState: .Selected)
+        closeButton.setImage(UIImage(named: "closeButton", inBundle: NSBundle(forClass: self.classForCoder), compatibleWithTraitCollection: UITraitCollection())?.imageWithRenderingMode(.AlwaysTemplate), forState: .Highlighted)
         closeButton.addTarget(self, action: "runCompletion:", forControlEvents: .TouchUpInside)
         
         self.addSubview(closeButton)
