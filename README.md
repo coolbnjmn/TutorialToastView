@@ -84,9 +84,13 @@ Added close buttin icon, and tint it the right color.
 Resource set in podspec correctly, should find close button
 
 ### V0.1.17
-Stil trying to set the podspec resource bundle to work for the images of the close button
+Still trying to set the podspec resource bundle to work for the images of the close button
+
+### V0.1.18,V0.1.19
+Changing resource handling to expose resources to outside projects
 
 If this is not enough customization, let me know!
+
 
 ## License
 Copyright (c) 2015 Benjamin Hendricks
