@@ -21,7 +21,7 @@ public class TutorialToastViewStyle {
     public var font : UIFont
     public var padding : CGFloat = 10
     public var closeButtonSize : CGFloat = 20
-    
+    public var closeButtonImage : UIImage?
     /**
      * Basic initializer for a toast view style
      *
@@ -44,13 +44,16 @@ public class TutorialToastViewStyle {
      *  ::param:: padding            (optional) A CGFloat that can override the value of 10 of padding for the text around the sides and the top/bottom. 
      *  ::param:: closeButtonSize    (optional) A CGFloat that can override the size of the close button, and in turn the height of the title label
      */
-    public convenience init(backgroundColor : UIColor, tintColor : UIColor, font: UIFont, padding: CGFloat?, closeButtonSize: CGFloat?) {
+    public convenience init(backgroundColor : UIColor, tintColor : UIColor, font: UIFont, padding: CGFloat?, closeButtonSize: CGFloat?, closeButtonImage: UIImage?) {
         self.init(backgroundColor: backgroundColor, tintColor: tintColor, font: font)
         if let padding = padding {
             self.padding = padding
         }
         if let closeButtonSize = closeButtonSize {
             self.closeButtonSize = closeButtonSize
+        }
+        if let closeButtonImage = closeButtonImage {
+            self.closeButtonImage = closeButtonImage
         }
     }
 
@@ -92,8 +95,8 @@ public class TutorialToastViewStyle {
      *  ::param:: closeButtonSize    A CGFloat that can override the size of the close button, and in turn the height of the title label
      * returns -- a TutorialToastViewStyle with the specified parameters.
      */
-    public class func customStyleWithPadding(backgroundColor : UIColor, tintColor : UIColor, font: UIFont, padding: CGFloat, closeButtonSize: CGFloat) -> TutorialToastViewStyle? {
-        return TutorialToastViewStyle(backgroundColor: backgroundColor, tintColor: tintColor, font: font, padding: padding, closeButtonSize: closeButtonSize)
+    public class func customStyleWithPadding(backgroundColor : UIColor, tintColor : UIColor, font: UIFont, padding: CGFloat, closeButtonSize: CGFloat, closeButtonImage: UIImage?) -> TutorialToastViewStyle? {
+        return TutorialToastViewStyle(backgroundColor: backgroundColor, tintColor: tintColor, font: font, padding: padding, closeButtonSize: closeButtonSize, closeButtonImage: closeButtonImage)
     }
 }
 
@@ -270,9 +273,12 @@ public class TutorialToastView: UIView {
             style.closeButtonSize))
         closeButton.enabled = true
         closeButton.tintColor = style.tintColor
-        closeButton.setImage(UIImage(named: "closeButton", inBundle: NSBundle(forClass: self.classForCoder), compatibleWithTraitCollection: UITraitCollection())?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
-        closeButton.setImage(UIImage(named: "closeButton", inBundle: NSBundle(forClass: self.classForCoder), compatibleWithTraitCollection: UITraitCollection())?.imageWithRenderingMode(.AlwaysTemplate), forState: .Selected)
-        closeButton.setImage(UIImage(named: "closeButton", inBundle: NSBundle(forClass: self.classForCoder), compatibleWithTraitCollection: UITraitCollection())?.imageWithRenderingMode(.AlwaysTemplate), forState: .Highlighted)
+        if let closeButtonImage = style.closeButtonImage {
+            closeButton.setImage(closeButtonImage, forState: .Normal)
+            closeButton.setImage(closeButtonImage, forState: .Selected)
+            closeButton.setImage(closeButtonImage, forState: .Highlighted)
+
+        }
         closeButton.addTarget(self, action: "runCompletion:", forControlEvents: .TouchUpInside)
         
         self.addSubview(closeButton)

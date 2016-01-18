@@ -70,7 +70,7 @@ class ViewController: UIViewController {
     
     @IBAction func dynamicButtonPressed(sender: AnyObject) {
         if !isPresenting {
-            let style = TutorialToastViewStyle(backgroundColor: colorForButton(backgroundColorPicker.selectedSegmentIndex), tintColor: colorForButton(tintColorPicker.selectedSegmentIndex), font: fontForButton(fontPicker.selectedSegmentIndex)!, padding: CGFloat(paddingSlider.value), closeButtonSize: CGFloat(closeButtonSizeSlider.value))
+            let style = TutorialToastViewStyle(backgroundColor: colorForButton(backgroundColorPicker.selectedSegmentIndex), tintColor: colorForButton(tintColorPicker.selectedSegmentIndex), font: fontForButton(fontPicker.selectedSegmentIndex)!, padding: CGFloat(paddingSlider.value), closeButtonSize: CGFloat(closeButtonSizeSlider.value), closeButtonImage: UIImage(named: "closeButton", inBundle: NSBundle.mainBundle(), compatibleWithTraitCollection: UITraitCollection())?.imageWithRenderingMode(.AlwaysTemplate))
             
             let animationStyle : TutorialToastViewAnimationStyle = TutorialToastViewAnimationStyle.dynamicAnimationStyle()
             
@@ -87,7 +87,7 @@ class ViewController: UIViewController {
     
     @IBAction func customButtonPressed(sender: AnyObject) {
         if !isPresenting {
-            let style = TutorialToastViewStyle(backgroundColor: colorForButton(backgroundColorPicker.selectedSegmentIndex), tintColor: colorForButton(tintColorPicker.selectedSegmentIndex), font: fontForButton(fontPicker.selectedSegmentIndex)!, padding: CGFloat(paddingSlider.value), closeButtonSize: CGFloat(closeButtonSizeSlider.value))
+            let style = TutorialToastViewStyle(backgroundColor: colorForButton(backgroundColorPicker.selectedSegmentIndex), tintColor: colorForButton(tintColorPicker.selectedSegmentIndex), font: fontForButton(fontPicker.selectedSegmentIndex)!, padding: CGFloat(paddingSlider.value), closeButtonSize: CGFloat(closeButtonSizeSlider.value), closeButtonImage: UIImage(named: "closeButton", inBundle: NSBundle.mainBundle(), compatibleWithTraitCollection: UITraitCollection())?.imageWithRenderingMode(.AlwaysTemplate))
             self.toastView = TutorialToastView(superviewFrame: view.frame, scale: (1/3), title: "THIS IS YOUR ALERT TITLE", subtitle: "This is where you can give your users some more details about what is going on", style: style, animationStyle: nil, completion: {
                 self.isPresenting = false
             })

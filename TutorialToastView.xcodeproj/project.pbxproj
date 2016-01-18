@@ -18,9 +18,6 @@
 		B2787D911BEF0084001C207E /* TutorialToastView.h in Headers */ = {isa = PBXBuildFile; fileRef = B2787D901BEF0084001C207E /* TutorialToastView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B2787D981BEF0084001C207E /* TutorialToastView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2787D8D1BEF0084001C207E /* TutorialToastView.framework */; };
 		B2787D9D1BEF0084001C207E /* TutorialToastViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2787D9C1BEF0084001C207E /* TutorialToastViewTests.swift */; };
-		B298F37E1C053382003BE5A1 /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = B298F37B1C053382003BE5A1 /* closeButton.png */; };
-		B298F37F1C053382003BE5A1 /* closeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B298F37C1C053382003BE5A1 /* closeButton@2x.png */; };
-		B298F3801C053382003BE5A1 /* closeButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B298F37D1C053382003BE5A1 /* closeButton@3x.png */; };
 		B2B63B1A1BEF060200155758 /* TutorialToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B63B191BEF060200155758 /* TutorialToastView.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,9 +65,6 @@
 		B2787D971BEF0084001C207E /* TutorialToastViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TutorialToastViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2787D9C1BEF0084001C207E /* TutorialToastViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialToastViewTests.swift; sourceTree = "<group>"; };
 		B2787D9E1BEF0084001C207E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B298F37B1C053382003BE5A1 /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeButton.png; sourceTree = "<group>"; };
-		B298F37C1C053382003BE5A1 /* closeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closeButton@2x.png"; sourceTree = "<group>"; };
-		B298F37D1C053382003BE5A1 /* closeButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closeButton@3x.png"; sourceTree = "<group>"; };
 		B2B63B191BEF060200155758 /* TutorialToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialToastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,9 +169,6 @@
 				B2787D901BEF0084001C207E /* TutorialToastView.h */,
 				B2787D921BEF0084001C207E /* Info.plist */,
 				B2B63B191BEF060200155758 /* TutorialToastView.swift */,
-				B298F37B1C053382003BE5A1 /* closeButton.png */,
-				B298F37C1C053382003BE5A1 /* closeButton@2x.png */,
-				B298F37D1C053382003BE5A1 /* closeButton@3x.png */,
 			);
 			path = TutorialToastView;
 			sourceTree = "<group>";
@@ -374,9 +365,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B298F37E1C053382003BE5A1 /* closeButton.png in Resources */,
-				B298F3801C053382003BE5A1 /* closeButton@3x.png in Resources */,
-				B298F37F1C053382003BE5A1 /* closeButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

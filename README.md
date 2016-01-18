@@ -91,6 +91,10 @@ Changing resource handling to expose resources to outside projects
 
 If this is not enough customization, let me know!
 
+### v0.1.21
+BREAKING CHANGE -- Please add a close button image to be used for the close button, this is now required! This will be added to the style of the toast view.
+
+Thanks for using TutorialToastView
 
 ## License
 Copyright (c) 2015 Benjamin Hendricks
